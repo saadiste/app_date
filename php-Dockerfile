@@ -1,0 +1,14 @@
+# Utilisez une image PHP avec Apache préinstallé
+FROM php:7.4.30-apache
+
+# Installez les extensions PHP nécessaires
+RUN docker-php-ext-install mysqli
+
+# Copiez les fichiers de votre application PHP dans le conteneur
+COPY . /var/www/html/app_date_doker
+
+# Configurez PHP pour afficher les erreurs
+RUN echo "display_errors=On" >> /usr/local/etc/php/php.ini
+
+# Exposez le port 80 d'Apache
+EXPOSE 80

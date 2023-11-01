@@ -1,0 +1,14 @@
+# Utilisez l'image officielle MariaDB
+FROM mariadb:10.4.25
+
+# Définissez le mot de passe root de la base de données
+ENV MYSQL_ROOT_PASSWORD Nizou@@84
+
+# Copiez le script SQL d'initialisation pour créer la base de données
+COPY init.sql /docker-entrypoint-initdb.d/
+
+# Exposez le port 3306 pour MySQL
+EXPOSE 3306
+
+# Ajoutez une commande pour exécuter le script SQL après le démarrage du serveur MySQL
+CMD ["--init-file", "/docker-entrypoint-initdb.d/init.sql"]
